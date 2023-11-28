@@ -12,7 +12,7 @@ namespace AuctionService.RequestHelpers
     {
         public MappingProfiles()
         {
-            CreateMap<Auction, AuctionDto>().IncludeMembers(x => x.Item); // go from auction to auctionDto
+            CreateMap<Auction, AuctionDto>().IncludeMembers(x => x.Item).ForMember(d => d.Status, o => o.MapFrom(s => s.Status.ToString())); // go from auction to auctionDto
             CreateMap<Item, AuctionDto>(); // go from auction to auctionDto
             CreateMap<CreateAuctionDto, Auction>().ForMember(d => d.Item, o => o.MapFrom(s => s)); // go from auction to auctionDto
             CreateMap<CreateAuctionDto, Item>();
